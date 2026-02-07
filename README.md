@@ -1,6 +1,6 @@
-# Nix + nix-darwin Configuration
+# Nix + nix-darwin + Home Manager Configuration
 
-Declarative macOS system configuration using Nix and nix-darwin.
+Fully declarative macOS system configuration using Nix, nix-darwin, and Home Manager.
 
 ## Quick Start
 
@@ -8,14 +8,14 @@ Declarative macOS system configuration using Nix and nix-darwin.
 
 ```bash
 # Rebuild system after editing any .nix file
-darwin-rebuild switch --flake ~/.config/nix-config#macbook
+sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook
 
 # Update all packages (nixpkgs + homebrew)
 nix flake update --flake ~/.config/nix-config
-darwin-rebuild switch --flake ~/.config/nix-config#macbook
+sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook
 
 # Rollback if something breaks
-darwin-rebuild switch --rollback
+sudo darwin-rebuild switch --rollback
 
 # Reclaim disk space
 nix-collect-garbage -d
@@ -26,6 +26,21 @@ nix-collect-garbage -d
 - **Common packages** (all machines): Edit `modules/common/packages.nix`
 - **macOS-only packages**: Edit `modules/darwin/packages.nix`
 - **Homebrew formulae/casks**: Edit `modules/darwin/homebrew.nix`
+
+### Modifying Dotfiles (Home Manager)
+
+All dotfiles are now managed declaratively through Home Manager:
+
+- **Fish config**: Edit `modules/home-manager/fish.nix`
+- **Git config**: Edit `modules/home-manager/git.nix`
+- **Ghostty config**: Edit `modules/home-manager/ghostty.nix`
+
+After editing, rebuild:
+```bash
+sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook
+```
+
+**Important**: Do NOT edit dotfiles directly (e.g., `~/.config/fish/config.fish`). Changes will be overwritten on next rebuild. All changes must be made in the Nix files.
 
 ### VS Code Extensions
 
@@ -68,7 +83,11 @@ Extensions are managed declaratively in `scripts/vscode-extensions.txt`.
 
 - **Nix installation**: Managed by Determinate Systems installer (not nix-darwin)
 - **Rust toolchain**: Managed separately via `rustup` (not in Nix)
-- **Secrets**: Stored in gitignored files:
+- **Home Manager**: Manages all dotfiles declaratively
+  - Fish, Git, Ghostty configs are all in Nix
+  - Changes must be made in `.nix` files, not directly in dotfiles
+  - Old configs backed up with `.backup-before-hm` extension
+- **Secrets**: Stored in gitignored files (not managed by Home Manager):
   - `~/.config/fish/conf.d/secrets.fish`
   - `~/.zshrc.secrets`
 
