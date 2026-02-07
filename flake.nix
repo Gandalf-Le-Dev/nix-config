@@ -7,9 +7,13 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
     let
       mkDarwinSystem = { hostname, system, username }:
         nix-darwin.lib.darwinSystem {
@@ -23,6 +27,17 @@
             ./modules/darwin/system.nix
             ./modules/darwin/fonts.nix
             ./modules/darwin/shell.nix
+
+            # Home Manager integration
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = import ./modules/home-manager;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.backupFileExtension = "backup-before-hm";
+            }
+
             {
               users.users.${username}.home = "/Users/${username}";
               networking.hostName = hostname;
