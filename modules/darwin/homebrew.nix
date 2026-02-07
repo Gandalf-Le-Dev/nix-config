@@ -4,9 +4,8 @@
   homebrew = {
     enable = true;
 
-    # Start with "none" to avoid accidental uninstalls during migration
-    # Switch to "zap" later after verifying everything is listed
-    onActivation.cleanup = "none";
+    # Automatically uninstall packages not in the configuration
+    onActivation.cleanup = "zap";
 
     # Custom taps for embedded/QMK toolchain
     taps = [
@@ -51,11 +50,11 @@
       "ghostty"
       "ovhcloud-cli"
       "visual-studio-code"
-      "docker"
+      "docker-desktop"  # renamed from docker
       "discord"
-      "zen-browser"
+      "zen"  # renamed from zen-browser
       "alfred"
-      "tailscale"
+      "tailscale-app"  # renamed from tailscale
       "shottr"
     ];
   };
