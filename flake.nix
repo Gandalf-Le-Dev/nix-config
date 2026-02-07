@@ -45,13 +45,41 @@
           ];
           specialArgs = { inherit inputs; };
         };
+
+      mkHomeConfiguration = { hostname, system, username, homeDirectory }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            ./modules/home-manager
+            {
+              home = {
+                username = username;
+                homeDirectory = homeDirectory;
+                stateVersion = "24.05";
+              };
+            }
+          ];
+          extraSpecialArgs = { inherit inputs; };
+        };
     in
     {
+      # macOS configuration
       darwinConfigurations = {
         macbook = mkDarwinSystem {
           hostname = "macbook";
           system = "aarch64-darwin";
           username = "gandalfledev";
+        };
+      };
+
+      # Linux/standalone Home Manager configurations
+      homeConfigurations = {
+        # Example: your Linux server
+        "gandalfledev@linux-server" = mkHomeConfiguration {
+          hostname = "linux-server";
+          system = "x86_64-linux";  # or "aarch64-linux" for ARM
+          username = "gandalfledev";
+          homeDirectory = "/home/gandalfledev";
         };
       };
     };

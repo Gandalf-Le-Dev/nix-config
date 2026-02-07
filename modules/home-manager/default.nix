@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -14,11 +14,16 @@
   home.sessionVariables = {
     EDITOR = "code";
     VISUAL = "code";
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    # macOS-specific
     DOTNET_ROOT = "/opt/homebrew/opt/dotnet/libexec";
   };
 
   # Secrets file (gitignored, not managed by Home Manager)
-  home.file.".config/fish/conf.d/secrets.fish" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/Users/gandalfledev/.config/fish/conf.d/secrets.fish";
+  # Only create symlink if secrets file already exists
+  home.file.".config/fish/conf.d/secrets.fish" = lib.mkIf
+    (builtins.pathExists "${config.home.homeDirectory}/.config/fish/conf.d/secrets.fish") {
+    source = config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/.config/fish/conf.d/secrets.fish";
   };
 }
