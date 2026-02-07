@@ -38,7 +38,7 @@ else
 fi
 
 # Clone this repo if not already present
-REPO_URL="${REPO_URL:-git@github.com:yourusername/nix-config.git}"
+REPO_URL="${REPO_URL:-git@github.com:Gandalf-Le-Dev/nix-config.git}"
 CONFIG_DIR="$HOME/.config/nix-config"
 
 if [ ! -d "$CONFIG_DIR" ]; then
