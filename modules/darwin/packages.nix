@@ -11,6 +11,9 @@
     # Go tools
     golangci-lint
 
+    # Development tools
+    clang-tools  # Includes clang-format
+
     # Libraries and tools
     protobuf
     flatbuffers

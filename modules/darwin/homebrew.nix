@@ -29,7 +29,7 @@
       "hid_bootloader_cli"
       "bootloadhid"
       "hidapi"
-      "clang-format"
+      # Note: clang-format moved to Nix (clang-tools package)
 
       # Better in Homebrew on macOS
       "dotnet"
