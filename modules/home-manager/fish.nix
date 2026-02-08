@@ -40,8 +40,12 @@
       goclean = "go clean";
       govet = "go vet";
 
+      # Docker aliases
+      dc = "docker compose";
+
       # Nix rebuild aliases
-      rebuild = "sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook";
+      nix-rebuild-mac = "sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook";
+      nix-rebuild-vps = "home-manager switch --flake ~/.config/nix-config#debian@vps-e84ac0f1";
     };
 
     shellAbbrs = {
