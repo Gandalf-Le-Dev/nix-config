@@ -110,6 +110,14 @@
       # === Git Prompt Settings ===
       set __fish_git_prompt_showdirtystate 'yes'
       set __fish_git_prompt_showuntrackedfiles 'yes'
+
+      # === SSH Agent Setup ===
+      # Start ssh-agent if not running
+      if not set -q SSH_AUTH_SOCK
+          eval (ssh-agent -c) > /dev/null
+          set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+          set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+      end
     '';
 
     functions = {
