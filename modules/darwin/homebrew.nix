@@ -5,7 +5,7 @@
     enable = true;
 
     # Automatically uninstall packages not in the configuration
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
 
     # Custom taps for embedded/QMK toolchain
     taps = [

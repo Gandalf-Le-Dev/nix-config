@@ -45,7 +45,7 @@
 
       # Nix rebuild aliases
       nix-rebuild-mac = "sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook";
-      nix-rebuild-vps = "home-manager switch --flake ~/.config/nix-config#debian@vps-e84ac0f1";
+      nix-rebuild-vps = "nix run home-manager/master -- switch --flake .#debian@vps-e84ac0f1";
     };
 
     shellAbbrs = {
