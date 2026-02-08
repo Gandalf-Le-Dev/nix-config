@@ -55,7 +55,13 @@
 
     interactiveShellInit = ''
       # === PATH Setup ===
-      fish_add_path -p /opt/homebrew/bin
+      # Nix profile (for Home Manager packages)
+      fish_add_path -p ~/.nix-profile/bin
+
+      # macOS Homebrew (if it exists)
+      if test -d /opt/homebrew/bin
+          fish_add_path -p /opt/homebrew/bin
+      end
       fish_add_path -p /usr/local/bin
 
       # GDVM path
