@@ -5,6 +5,7 @@
     ./fish.nix
     ./ghostty.nix
     ./git.nix
+    ./atuin.nix
   ];
 
   # Home Manager state version

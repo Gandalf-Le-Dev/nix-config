@@ -9,6 +9,7 @@
     fzf
     tree
     gh
+    atuin  # Shell history sync
 
     # Version control
     jujutsu
