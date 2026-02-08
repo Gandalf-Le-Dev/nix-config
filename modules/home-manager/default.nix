@@ -11,6 +11,16 @@
   # Home Manager state version
   home.stateVersion = "24.05";
 
+  # Packages that need to be in Home Manager for Linux
+  home.packages = with pkgs; [
+    # Shell tools (also needed on Linux servers)
+    atuin
+    bat
+    ripgrep
+    fzf
+    tree
+  ];
+
   # Environment variables
   home.sessionVariables = {
     EDITOR = "code";
