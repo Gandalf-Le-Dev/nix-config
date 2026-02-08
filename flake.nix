@@ -74,12 +74,12 @@
 
       # Linux/standalone Home Manager configurations
       homeConfigurations = {
-        # Example: your Linux server
-        "gandalfledev@linux-server" = mkHomeConfiguration {
-          hostname = "linux-server";
-          system = "x86_64-linux";  # or "aarch64-linux" for ARM
-          username = "gandalfledev";
-          homeDirectory = "/home/gandalfledev";
+        # Atuin VPS
+        "debian@vps-e84ac0f1" = mkHomeConfiguration {
+          hostname = "vps-e84ac0f1";
+          system = "x86_64-linux";
+          username = "debian";
+          homeDirectory = "/home/debian";
         };
       };
     };
