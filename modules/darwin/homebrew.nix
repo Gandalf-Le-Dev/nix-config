@@ -4,8 +4,9 @@
   homebrew = {
     enable = true;
 
-    # Automatically uninstall packages not in the configuration
-    onActivation.cleanup = "uninstall";
+    # Disable automatic cleanup to avoid dependency conflicts
+    # Run 'brew autoremove' manually when needed to clean up unused packages
+    onActivation.cleanup = "none";
 
     # Custom taps for embedded/QMK toolchain
     taps = [
