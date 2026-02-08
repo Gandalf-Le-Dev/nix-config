@@ -54,10 +54,18 @@
     };
 
     interactiveShellInit = ''
-      # === PATH Setup ===
-      # Nix profile (for Home Manager packages)
+      # === Nix Setup ===
+      # Nix daemon (system-wide Nix installation)
+      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      else if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+          source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+      end
+
+      # Home Manager profile (user packages)
       fish_add_path -p ~/.nix-profile/bin
 
+      # === PATH Setup ===
       # macOS Homebrew (if it exists)
       if test -d /opt/homebrew/bin
           fish_add_path -p /opt/homebrew/bin
