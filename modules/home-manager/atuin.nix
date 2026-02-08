@@ -6,9 +6,9 @@
     enableFishIntegration = true;
 
     settings = {
-      # Use local storage for now (no sync)
-      auto_sync = false;
-      sync_address = "";  # Will set this to your Docker server later
+      # Sync to self-hosted server
+      auto_sync = true;
+      sync_address = "http://51.38.50.59:8888";
 
       # Search settings
       search_mode = "fuzzy";
