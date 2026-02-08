@@ -8,7 +8,7 @@
     settings = {
       # Sync to self-hosted server
       auto_sync = true;
-      sync_address = "http://51.38.50.59:8888";
+      sync_address = "https://atuin.mroc.me";
 
       # Search settings
       search_mode = "fuzzy";
