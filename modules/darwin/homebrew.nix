@@ -13,6 +13,7 @@
       "qmk/qmk"
       "osx-cross/avr"
       "ovh/tap"
+      "goreleaser/tap"
     ];
 
     # Formulae that stay in Homebrew
@@ -31,6 +32,9 @@
       "bootloadhid"
       "hidapi"
       # Note: clang-format moved to Nix (clang-tools package)
+
+      # Go tooling
+      "golangci-lint"
 
       # Better in Homebrew on macOS
       "dotnet"
@@ -57,6 +61,7 @@
       "alfred"
       "tailscale-app"  # renamed from tailscale
       "shottr"
+      "goreleaser"
     ];
   };
 }
