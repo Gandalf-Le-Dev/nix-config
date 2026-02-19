@@ -10,6 +10,5 @@
     font-feature = +cv02
     quit-after-last-window-closed = true
     command = /run/current-system/sw/bin/fish --login --interactive
-    macos-option-as-alt = true
   '';
 }
