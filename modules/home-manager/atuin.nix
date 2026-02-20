@@ -42,8 +42,8 @@
       # QOL: Auto-filter commands with secrets (API keys, tokens, passwords)
       secrets_filter = true;
 
-      # QOL: Don't store failed commands in history
-      store_failed = false;
+      # QOL: Store failed commands in history
+      store_failed = true;
 
       # QOL: Enable natural date search (e.g., "yesterday", "last week")
       dialect = "us";
