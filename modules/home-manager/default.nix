@@ -6,6 +6,7 @@
     ./ghostty.nix
     ./git.nix
     ./atuin.nix
+    ./wakatime.nix
   ];
 
   # Home Manager state version
