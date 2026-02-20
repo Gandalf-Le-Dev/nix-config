@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ ... }:
 
 {
-  # Keep .wakatime.cfg out of the Nix store (contains secret API key).
-  # The file must exist manually at ~/.wakatime.cfg (gitignored).
-  home.file.".wakatime.cfg" = lib.mkIf
-    (builtins.pathExists "${config.home.homeDirectory}/.wakatime.cfg") {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/.wakatime.cfg";
-  };
+  home.file.".wakatime.cfg".text = ''
+    [settings]
+    api_url = https://wakapi.mroc.me/api
+
+    status_bar_coding_activity = true
+    debug = false
+  '';
 }
