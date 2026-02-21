@@ -12,7 +12,7 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       c = "clear";
-      vk = "npx vibe-kanban";
+      ccusage = "npx ccusage@latest";
 
       # Grep with color
       grep = "grep --color=auto";
