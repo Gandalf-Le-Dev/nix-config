@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     # Programming languages
+    bun
     go
     nodejs
     python3
