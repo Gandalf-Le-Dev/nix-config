@@ -35,6 +35,7 @@
 
       # Go tooling
       "golangci-lint"
+      "rtk"
 
       # Better in Homebrew on macOS
       "dotnet"
