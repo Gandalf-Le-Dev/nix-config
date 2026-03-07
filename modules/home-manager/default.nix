@@ -20,6 +20,7 @@
     ripgrep
     fzf
     tree
+    zellij
   ];
 
   # Environment variables
