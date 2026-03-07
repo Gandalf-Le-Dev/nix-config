@@ -44,6 +44,7 @@
       "llvm@18"
       "llvm@20"
       "openjdk"
+      "postgrest"
     ];
 
     # All casks stay in Homebrew
