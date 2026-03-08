@@ -21,6 +21,7 @@
     fzf
     tree
     zellij
+    zoxide
   ];
 
   # Environment variables

@@ -2,7 +2,7 @@
 
 {
   home.file.".config/ghostty/config".text = ''
-    theme = dark:catppuccin-macchiato,light:alabaster
+    theme = dark:Catppuccin Macchiato,light:alabaster
     font-family = Maple Mono NF
     font-size = 14
     window-padding-x = 16
