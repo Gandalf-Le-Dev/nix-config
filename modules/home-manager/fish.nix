@@ -197,32 +197,86 @@
 
       # Custom prompt
       fish_prompt = ''
-        set_color normal
+        set -l last_status $status
+
+        # ── Top line ──
+        set_color brblack
         echo -n '╭─ '
 
         # Username@hostname
-        set_color normal
-        echo -n $USER'@'
-        set_color green
-        echo -n (string replace -r '\.local$' "" $hostname)' '
+        set_color magenta
+        echo -n ' '$USER
+        set_color brblack
+        echo -n '@'
+        set_color magenta
+        echo -n (string replace -r '\.local$' "" $hostname)
 
-        # Full path
+        # Path (~ for home, truncate middle dirs)
         set_color blue
-        echo -n $PWD
+        echo -n ' '
+        set -l display_path (string replace "$HOME" "~" $PWD)
+        set -l parts (string split "/" $display_path)
+        if test (count $parts) -gt 4
+            echo -n $parts[1]'/'
+            for i in (seq 2 (math (count $parts) - 2))
+                echo -n (string sub -l 1 $parts[$i])'/'
+            end
+            echo -n $parts[-2]'/'$parts[-1]
+        else
+            echo -n $display_path
+        end
 
-        # Git branch info
-        set_color yellow
-        echo -n (__fish_git_prompt)
+        # Git info
+        if git rev-parse --is-inside-work-tree &>/dev/null
+            set -l branch (git branch --show-current 2>/dev/null; or git rev-parse --short HEAD 2>/dev/null)
+            set_color brblack
+            echo -n ' '
+            set_color yellow
+            echo -n ' '$branch
+
+            # Status indicators
+            set -l indicators
+            if not git diff --quiet 2>/dev/null
+                set -a indicators (set_color red)'●'  # dirty
+            end
+            if not git diff --cached --quiet 2>/dev/null
+                set -a indicators (set_color green)'●'  # staged
+            end
+            if test -n "$(git ls-files --others --exclude-standard 2>/dev/null)"
+                set -a indicators (set_color blue)'+'  # untracked
+            end
+
+            set -l ahead (git rev-list --count @{upstream}..HEAD 2>/dev/null)
+            set -l behind (git rev-list --count HEAD..@{upstream} 2>/dev/null)
+            if test -n "$ahead" -a "$ahead" -gt 0
+                set -a indicators (set_color cyan)'⇡'$ahead
+            end
+            if test -n "$behind" -a "$behind" -gt 0
+                set -a indicators (set_color cyan)'⇣'$behind
+            end
+
+            if test (count $indicators) -gt 0
+                echo -n ' '(string join "" $indicators)
+            end
+        end
 
         # Timestamp
         set_color brblack
-        echo -n ' ' (date "+%H:%M:%S")
+        echo -n '  '(date "+%H:%M:%S")
 
+        # ── Bottom line ──
         set_color normal
         echo
-        echo -n '╰'
-        set_color green
-        echo -n '❯ '
+        set_color brblack
+        echo -n '╰─'
+        if test $last_status -eq 0
+            set_color green
+            echo -n '❯ '
+        else
+            set_color red
+            echo -n '❯ '
+        end
+        set_color normal
       '';
 
       # Custom greeting
