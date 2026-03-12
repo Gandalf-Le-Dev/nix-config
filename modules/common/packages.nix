@@ -18,6 +18,7 @@
     # Cloud and DevOps
     awscli2
     terraform
+    kind
     kubernetes-helm
     k9s
     go-task
