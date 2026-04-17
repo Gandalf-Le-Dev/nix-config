@@ -1,42 +1,18 @@
 { ... }:
-
 {
   homebrew = {
     enable = true;
-
-    # Disable automatic cleanup to avoid dependency conflicts
-    # Run 'brew autoremove' manually when needed to clean up unused packages
     onActivation.cleanup = "none";
 
-    # Custom taps for embedded/QMK toolchain
     taps = [
-      "qmk/qmk"
-      "osx-cross/avr"
-      "ovh/tap"
       "goreleaser/tap"
+      "ovh/tap"
     ];
 
-    # Formulae that stay in Homebrew
     brews = [
-      # Embedded/QMK toolchain (custom taps, not in nixpkgs)
-      "qmk"
-      "avr-binutils"
-      "avr-gcc@8"
-      # ARM toolchain is installed via gcc-arm-embedded cask below
-      "avrdude"
-      "dfu-programmer"
-      "dfu-util"
-      "teensy_loader_cli"
-      "mdloader"
-      "hid_bootloader_cli"
-      "bootloadhid"
-      "hidapi"
-      # Note: clang-format moved to Nix (clang-tools package)
-
       # Go tooling
       "golangci-lint"
       "rtk"
-
       # Better in Homebrew on macOS
       "dotnet"
       "mono"
@@ -47,7 +23,6 @@
       "postgrest"
     ];
 
-    # All casks stay in Homebrew
     casks = [
       "arc"
       "dotnet-runtime"
@@ -55,15 +30,15 @@
       "font-maple-mono-nf"
       "gcc-arm-embedded"
       "ghostty"
-      "ovhcloud-cli"
+      "ovh/tap/ovhcloud-cli"
       "visual-studio-code"
-      "docker-desktop"  # renamed from docker
+      "docker-desktop"
       "discord"
-      "zen"  # renamed from zen-browser
+      "zen"
       "alfred"
-      "tailscale-app"  # renamed from tailscale
+      "tailscale-app"
       "shottr"
-      "goreleaser"
+      "goreleaser/tap/goreleaser"
     ];
   };
 }
