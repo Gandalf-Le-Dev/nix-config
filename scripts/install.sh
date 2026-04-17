@@ -146,29 +146,6 @@ validate_flake_host() {
     fi
 }
 
-# ─── Seed secrets from templates ──────────────────────────────────────────────
-seed_secrets() {
-    local tpl_dir="$CONFIG_DIR/templates"
-    local fish_secrets="$HOME/.config/fish/conf.d/secrets.fish"
-    local zsh_secrets="$HOME/.zshrc.secrets"
-
-    if [ ! -d "$tpl_dir" ]; then
-        warn "No templates/ directory in repo — create one with secrets.fish.example and zshrc.secrets.example to auto-seed on future installs"
-        return
-    fi
-
-    if [ ! -f "$fish_secrets" ] && [ -f "$tpl_dir/secrets.fish.example" ]; then
-        mkdir -p "$(dirname "$fish_secrets")"
-        cp "$tpl_dir/secrets.fish.example" "$fish_secrets"
-        log "Seeded $fish_secrets"
-    fi
-
-    if [ ! -f "$zsh_secrets" ] && [ -f "$tpl_dir/zshrc.secrets.example" ]; then
-        cp "$tpl_dir/zshrc.secrets.example" "$zsh_secrets"
-        log "Seeded $zsh_secrets"
-    fi
-}
-
 # ─── Build nix-darwin ─────────────────────────────────────────────────────────
 build_darwin() {
     cd "$CONFIG_DIR"
@@ -186,7 +163,6 @@ main() {
     setup_ssh_key
     clone_repo
     validate_flake_host
-    seed_secrets
     build_darwin
 
     cat <<EOF
@@ -196,10 +172,7 @@ main() {
 Next steps:
   1. Restart your terminal to load the new environment
   2. Install Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  3. Review seeded secrets files:
-       ~/.config/fish/conf.d/secrets.fish
-       ~/.zshrc.secrets
-  4. Run VS Code extension sync: ~/.config/nix-config/scripts/vscode-extensions.sh
+  3. Run VS Code extension sync: ~/.config/nix-config/scripts/vscode-extensions.sh
 
 Env vars honored (all optional):
   REPO_URL         default: https://github.com/Gandalf-Le-Dev/nix-config.git
