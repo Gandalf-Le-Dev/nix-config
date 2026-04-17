@@ -124,14 +124,29 @@ setup_ssh_key() {
     read -r -p "Press ENTER once the key is added to GitHub (or Ctrl-C to skip)..."
 }
 
-# ─── Clone repo ───────────────────────────────────────────────────────────────
-clone_repo() {
-    if [ -d "$CONFIG_DIR" ]; then
-        echo "nix-config already exists at $CONFIG_DIR"
+# ─── Clone or sync repo ───────────────────────────────────────────────────────
+sync_repo() {
+    if [ ! -d "$CONFIG_DIR" ]; then
+        log "Cloning $REPO_URL → $CONFIG_DIR"
+        git clone "$REPO_URL" "$CONFIG_DIR"
         return
     fi
-    log "Cloning $REPO_URL → $CONFIG_DIR"
-    git clone "$REPO_URL" "$CONFIG_DIR"
+
+    log "Repo exists at $CONFIG_DIR — syncing with remote..."
+    cd "$CONFIG_DIR"
+
+    # Refuse to touch a dirty tree — pulling could clobber local edits
+    if [ -n "$(git status --porcelain)" ]; then
+        warn "Working tree has uncommitted changes — skipping pull"
+        warn "Commit, stash, or discard changes and re-run to sync"
+        return
+    fi
+
+    # Fast-forward only so we never silently create merge commits
+    git fetch --quiet origin
+    if ! git pull --ff-only --quiet; then
+        warn "git pull --ff-only failed (diverged branch?) — continuing with local state"
+    fi
 }
 
 # ─── Validate flake host ──────────────────────────────────────────────────────
@@ -161,7 +176,7 @@ main() {
     install_homebrew
     install_nix
     setup_ssh_key
-    clone_repo
+    sync_repo
     validate_flake_host
     build_darwin
 
