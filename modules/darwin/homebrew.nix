@@ -7,6 +7,7 @@
     taps = [
       "goreleaser/tap"
       "ovh/tap"
+      "hopboxdev/tap"
     ];
 
     brews = [
@@ -39,6 +40,7 @@
       "tailscale-app"
       "shottr"
       "goreleaser/tap/goreleaser"
+      "hopboxdev/tap/hop"
     ];
   };
 }
