@@ -55,10 +55,16 @@ EOF
 }
 
 # ─── Xcode Command Line Tools ─────────────────────────────────────────────────
+# Accepts either the standalone Command Line Tools package or a full Xcode.app
+# install — both provide what nix-darwin / Homebrew need.
+clt_ready() {
+    xcode-select -p &>/dev/null && /usr/bin/xcrun --find git &>/dev/null
+}
+
 install_clt() {
-    log "Checking Xcode Command Line Tools..."
-    if /usr/bin/pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &>/dev/null; then
-        echo "Xcode CLT already installed"
+    log "Checking Xcode developer tools..."
+    if clt_ready; then
+        echo "Developer tools already installed at $(xcode-select -p)"
         return
     fi
 
@@ -66,10 +72,15 @@ install_clt() {
     xcode-select --install 2>/dev/null || true
 
     echo "Waiting for installation to complete..."
-    until /usr/bin/pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &>/dev/null; do
+    local waited=0
+    until clt_ready; do
         sleep 5
+        waited=$((waited + 5))
+        if (( waited >= 1800 )); then
+            die "Timed out waiting for CLT install after 30 min — check the installer GUI"
+        fi
     done
-    log "Xcode CLT installed"
+    log "Xcode developer tools installed"
 }
 
 # ─── Homebrew ─────────────────────────────────────────────────────────────────
