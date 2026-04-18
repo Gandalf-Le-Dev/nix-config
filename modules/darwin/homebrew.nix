@@ -22,6 +22,7 @@
       "llvm@20"
       "openjdk"
       "postgrest"
+      "hopboxdev/tap/hop"
     ];
 
     casks = [
@@ -40,7 +41,6 @@
       "tailscale-app"
       "shottr"
       "goreleaser/tap/goreleaser"
-      "hopboxdev/tap/hop"
     ];
   };
 }
