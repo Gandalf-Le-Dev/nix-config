@@ -22,11 +22,11 @@
       "llvm@20"
       "openjdk"
       "postgrest"
+      "herdr"
       "hopboxdev/tap/hop"
     ];
 
     casks = [
-      "arc"
       "dotnet-runtime"
       "font-maple-mono"
       "font-maple-mono-nf"
@@ -41,6 +41,7 @@
       "tailscale-app"
       "shottr"
       "goreleaser/tap/goreleaser"
+      "finetune"
     ];
   };
 }
