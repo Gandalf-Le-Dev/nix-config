@@ -7,6 +7,7 @@
     ./ghostty.nix
     ./git.nix
     ./atuin.nix
+    ./zoxide.nix
     ./wakatime.nix
   ];
 
@@ -22,7 +23,6 @@
     fzf
     tree
     zellij
-    zoxide
   ];
 
   # Environment variables
