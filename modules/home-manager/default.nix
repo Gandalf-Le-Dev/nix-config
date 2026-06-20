@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./fish.nix
+    ./zsh.nix
+    ./starship.nix
     ./ghostty.nix
     ./git.nix
     ./atuin.nix
@@ -33,11 +34,6 @@
     DOTNET_ROOT = "/opt/homebrew/opt/dotnet/libexec";
   };
 
-  # Secrets file (gitignored, not managed by Home Manager)
-  # Only create symlink if secrets file already exists
-  home.file.".config/fish/conf.d/secrets.fish" = lib.mkIf
-    (builtins.pathExists "${config.home.homeDirectory}/.config/fish/conf.d/secrets.fish") {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/.config/fish/conf.d/secrets.fish";
-  };
+  # Secrets are loaded by zsh from ~/.config/zsh/secrets.zsh if it exists
+  # (gitignored, not managed by Home Manager). See zsh.nix.
 }

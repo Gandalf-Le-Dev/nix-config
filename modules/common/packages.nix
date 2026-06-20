@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     # Shell and CLI tools
-    fish
     gh
     # Note: atuin, bat, ripgrep, fzf, tree moved to Home Manager for cross-platform support
 

@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 {
-  # Enable fish shell
-  programs.fish.enable = true;
+  # Enable zsh (system integration: /etc/zshrc sources Nix, completions, etc.)
+  programs.zsh.enable = true;
 
-  # Add fish to available shells
+  # Add zsh to available shells
   environment.shells = with pkgs; [
-    fish
+    zsh
   ];
 }

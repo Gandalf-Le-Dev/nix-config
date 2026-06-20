@@ -3,7 +3,7 @@
 {
   programs.atuin = {
     enable = true;
-    enableFishIntegration = true;
+    enableZshIntegration = true;
 
     settings = {
       # Sync to self-hosted server
