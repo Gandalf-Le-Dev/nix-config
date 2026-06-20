@@ -10,8 +10,6 @@ drblury.protobuf-vsc
 editorconfig.editorconfig
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
-github.copilot
-github.copilot-chat
 golang.go
 jinliming2.vscode-go-template
 maikkundev.quick-run-debug-buttons
