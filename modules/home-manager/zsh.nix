@@ -81,6 +81,10 @@
       # Docker aliases
       dc = "docker compose";
 
+      # Claude Code (--dangerously-skip-permissions)
+      cc = "claude --dangerously-skip-permissions";
+      ccr = "claude --continue --dangerously-skip-permissions";
+
       # Nix rebuild aliases
       nix-rebuild-mac = "sudo darwin-rebuild switch --flake ~/.config/nix-config#macbook";
       nix-rebuild-vps = "nix run home-manager/master -- switch --flake .#debian@vps-e84ac0f1";
