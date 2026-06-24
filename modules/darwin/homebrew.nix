@@ -15,6 +15,8 @@
       "golangci-lint"
       "rtk"
       # Better in Homebrew on macOS
+      # macOS ships curl built against LibreSSL with fewer features; use brew's.
+      "curl"
       "dotnet"
       "mono"
       "llvm"

@@ -81,6 +81,9 @@
       # Docker aliases
       dc = "docker compose";
 
+      # hopbox
+      hb = "hopbox --addr box.mroc.me:7700";
+
       # Claude Code (--dangerously-skip-permissions)
       cc = "claude --dangerously-skip-permissions";
       ccr = "claude --continue --dangerously-skip-permissions";
@@ -107,6 +110,7 @@
       typeset -U path
       for __dir in \
         "$HOME/.nix-profile/bin" \
+        /opt/homebrew/opt/curl/bin \
         /opt/homebrew/bin \
         /usr/local/bin \
         "$HOME/.gdvm/bin" \
