@@ -81,9 +81,6 @@
       # Docker aliases
       dc = "docker compose";
 
-      # hopbox
-      hb = "hopbox --addr box.mroc.me:7700";
-
       # Claude Code (--dangerously-skip-permissions)
       cc = "claude --dangerously-skip-permissions";
       ccr = "claude --continue --dangerously-skip-permissions";

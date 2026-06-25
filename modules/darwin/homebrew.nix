@@ -25,7 +25,6 @@
       "openjdk"
       "postgrest"
       "herdr"
-      "hopboxdev/tap/hop"
     ];
 
     casks = [
@@ -44,6 +43,7 @@
       "shottr"
       "goreleaser/tap/goreleaser"
       "finetune"
+      "hopboxdev/tap/hopbox"
     ];
   };
 }
