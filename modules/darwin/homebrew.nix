@@ -46,6 +46,7 @@
       "goreleaser/tap/goreleaser"
       "finetune"
       "hopboxdev/tap/hopbox"
+      "vorssaint"
     ];
   };
 }
