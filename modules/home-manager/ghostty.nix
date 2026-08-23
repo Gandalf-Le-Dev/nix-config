@@ -8,7 +8,7 @@
     window-padding-x = 16
     window-padding-y = 8
     font-feature = +cv02
-    quit-after-last-window-closed = true
+    quit-after-last-window-closed = false
     macos-option-as-alt = false
   '';
 }
