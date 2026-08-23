@@ -25,6 +25,8 @@
       "openjdk"
       "postgrest"
       "herdr"
+      # PDF text extraction and page rendering (pdftotext, pdftoppm).
+      "poppler"
     ];
 
     casks = [
