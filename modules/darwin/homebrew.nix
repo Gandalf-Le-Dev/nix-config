@@ -7,7 +7,6 @@
     taps = [
       "goreleaser/tap"
       "ovh/tap"
-      "hopboxdev/tap"
     ];
 
     brews = [
@@ -45,7 +44,6 @@
       "shottr"
       "goreleaser/tap/goreleaser"
       "finetune"
-      "hopboxdev/tap/hopbox"
       "vorssaint"
     ];
   };
