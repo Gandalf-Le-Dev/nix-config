@@ -8,6 +8,7 @@
     ./git.nix
     ./atuin.nix
     ./zoxide.nix
+    ./mise.nix
     ./wakatime.nix
   ];
 
