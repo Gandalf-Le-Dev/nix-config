@@ -23,7 +23,6 @@
       plugins = [
         "git"
         "sudo"
-        "dirhistory"
       ];
       # Skip compaudit's slow insecure-directory scan on every startup
       # (set before oh-my-zsh.sh is sourced). ~40% of startup time.
