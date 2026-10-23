@@ -42,7 +42,6 @@
       "docker-desktop"
       "discord"
       "zen"
-      "alfred"
       "tailscale-app"
       "shottr"
       "goreleaser/tap/goreleaser"
