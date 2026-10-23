@@ -19,11 +19,13 @@
   home.packages = with pkgs; [
     # Shell tools (also needed on Linux servers)
     atuin
-    bat
     ripgrep
     fzf
     tree
     zellij
+  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+    # macOS gets bat from Homebrew.
+    bat
   ];
 
   # Environment variables
