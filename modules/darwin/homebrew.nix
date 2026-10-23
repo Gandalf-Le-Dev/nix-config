@@ -26,6 +26,9 @@
       "herdr"
       # PDF text extraction and page rendering (pdftotext, pdftoppm).
       "poppler"
+      "glow"
+      "git-delta"
+      "bat"
     ];
 
     casks = [

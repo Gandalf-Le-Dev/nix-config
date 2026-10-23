@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs.git = {
     enable = true;
 
-    settings = {
+    settings = lib.mkMerge [ {
       user = {
         name = "Gandalf-Le-Dev";
         email = "matproz.gaming@gmail.com";
@@ -17,6 +17,7 @@
 
       merge = {
         tool = "vscode";
+        conflictStyle = "zdiff3";
       };
 
       "mergetool \"vscode\"" = {
@@ -39,6 +40,15 @@
       "url \"ssh://git@github.com/\"" = {
         insteadOf = "https://github.com/";
       };
-    };
+    }
+    # delta comes from Homebrew, so the VPS has no binary for this pager.
+    (lib.mkIf pkgs.stdenv.isDarwin {
+      core.pager = "delta";
+      interactive.diffFilter = "delta --color-only";
+      delta = {
+        navigate = true;
+        dark = true;
+      };
+    }) ];
   };
 }
