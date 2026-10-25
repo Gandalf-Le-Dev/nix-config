@@ -7,7 +7,7 @@
     settings = lib.mkMerge [ {
       user = {
         name = "Gandalf-Le-Dev";
-        email = "matproz.gaming@gmail.com";
+        email = "46865726+Gandalf-Le-Dev@users.noreply.github.com";
       };
 
       core = {
