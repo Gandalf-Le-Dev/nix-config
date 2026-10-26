@@ -24,8 +24,7 @@
       # Store more history
       max_history_length = 100000;
 
-      # Key bindings (Ctrl+R for search)
-      keymap_mode = "vim-normal";
+      keymap_mode = "vim-insert";
 
       # QOL: Enter puts command in prompt instead of executing (safer!)
       enter_accept = false;
