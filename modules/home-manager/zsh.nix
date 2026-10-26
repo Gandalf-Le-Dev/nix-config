@@ -120,6 +120,11 @@
       unset __dir
       export PATH
 
+      # Rex puts its bin first, but nix-darwin resets PATH at shell start.
+      if [ -n "$REX_BIN_DIR" ]; then
+        export PATH="$REX_BIN_DIR:$PATH"
+      fi
+
       # === SSH Agent ===
       if [ -z "$SSH_AUTH_SOCK" ]; then
         eval "$(ssh-agent -s)" > /dev/null
