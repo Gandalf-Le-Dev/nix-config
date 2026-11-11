@@ -10,6 +10,7 @@
     ./zoxide.nix
     ./mise.nix
     ./wakatime.nix
+    ./claude.nix
   ];
 
   # Home Manager state version

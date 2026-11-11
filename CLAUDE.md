@@ -55,6 +55,7 @@ Module layers (applied in order for macOS):
 | Homebrew formulae/casks | `modules/darwin/homebrew.nix` |
 | Dotfiles / program config | `modules/home-manager/<tool>.nix` + import in `modules/home-manager/default.nix` |
 | VS Code extensions | `scripts/vscode-extensions.txt` |
+| Plain config files, edited in place | `dotfiles/<tool>/` + `mkOutOfStoreSymlink` in `modules/home-manager/<tool>.nix` (example: `claude.nix`) |
 
 ## Important Rules
 
