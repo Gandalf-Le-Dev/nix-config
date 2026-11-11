@@ -11,6 +11,7 @@
     ./mise.nix
     ./wakatime.nix
     ./claude.nix
+    ./ssh.nix
   ];
 
   # Home Manager state version
