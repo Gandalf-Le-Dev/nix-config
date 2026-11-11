@@ -29,6 +29,8 @@
     glow
     # pdftotext, pdftoppm
     poppler-utils
+    gnupg
+    pinentry-curses
   ];
 
   # Environment variables
