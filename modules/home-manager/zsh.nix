@@ -89,11 +89,8 @@
       nix-rebuild-vps = "nix run home-manager/master -- switch --flake .#debian@vps-e84ac0f1";
     };
 
-    initContent = lib.mkOrder 1000 ''
-      # === Completion ===
-      # Case-insensitive matching
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
+    # Non-interactive shells (zsh -c, Rex tab commands, scripts) skip .zshrc.
+    envExtra = ''
       # === Nix Setup ===
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -124,6 +121,12 @@
       if [ -n "$REX_BIN_DIR" ]; then
         export PATH="$REX_BIN_DIR:$PATH"
       fi
+    '';
+
+    initContent = lib.mkOrder 1000 ''
+      # === Completion ===
+      # Case-insensitive matching
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
       # === SSH Agent ===
       if [ -z "$SSH_AUTH_SOCK" ]; then
