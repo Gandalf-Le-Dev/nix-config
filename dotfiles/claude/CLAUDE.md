@@ -43,6 +43,8 @@ Every Agent call sets `model` and `effort` from this table, unless the agent fil
 
 A clear spec does not mean sonnet: a migration or perf optimization with a clear spec still goes to opus or fable. Code edits and judgment calls stay on sonnet or above, never haiku. The reviewer runs on a tier at least as high as the implementer.
 
+Named agents ignore `effort`: with CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1, an Agent call with `name` runs at the session effort and keeps only `model` (Claude Code 2.1.322 bug). If an agent needs an effort different from the session's, do not set `name`; address it by its agent ID instead. Remove this paragraph once named agents honor `effort`.
+
 Escalate in this order when a result is not good enough: give the agent a check it can run (test, build, script), then raise effort one level, then move up one model at a lower effort. Before raising opus past `high`, try fable at `high` instead. For batches with an automatic pass/fail check, run all at `low` and re-run only the failures at `high`.
 
 ### Context hygiene
