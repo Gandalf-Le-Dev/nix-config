@@ -98,12 +98,23 @@
         . '/nix/var/nix/profiles/default/etc/profile.d/nix.sh'
       fi
 
+      # === Homebrew ===
+      # Static `brew shellenv` output: no subprocess, since every zsh reads this.
+      if [ -d /opt/homebrew ]; then
+        export HOMEBREW_PREFIX=/opt/homebrew
+        export HOMEBREW_CELLAR=/opt/homebrew/Cellar
+        export HOMEBREW_REPOSITORY=/opt/homebrew
+        export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}"
+        fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+      fi
+
       # === PATH Setup ===
       # Prepend dirs that exist; typeset -U keeps PATH de-duplicated.
-      typeset -U path
+      typeset -U path fpath
       for __dir in \
         "$HOME/.nix-profile/bin" \
         /opt/homebrew/opt/curl/bin \
+        /opt/homebrew/sbin \
         /opt/homebrew/bin \
         /usr/local/bin \
         "$HOME/.gdvm/bin" \
