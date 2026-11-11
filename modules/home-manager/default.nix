@@ -24,9 +24,11 @@
     fzf
     tree
     zellij
-  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
-    # macOS gets bat from Homebrew.
     bat
+    delta
+    glow
+    # pdftotext, pdftoppm
+    poppler-utils
   ];
 
   # Environment variables

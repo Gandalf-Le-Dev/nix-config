@@ -113,7 +113,6 @@
       typeset -U path fpath
       for __dir in \
         "$HOME/.nix-profile/bin" \
-        /opt/homebrew/opt/curl/bin \
         /opt/homebrew/sbin \
         /opt/homebrew/bin \
         /usr/local/bin \

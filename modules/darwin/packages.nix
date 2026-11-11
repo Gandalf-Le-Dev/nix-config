@@ -12,6 +12,10 @@
     # Go tools
     golangci-lint
 
+    # macOS ships curl built against LibreSSL with fewer features.
+    curl
+    postgrest
+
     # Development tools
     clang-tools  # Includes clang-format
 

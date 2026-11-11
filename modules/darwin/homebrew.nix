@@ -10,24 +10,14 @@
     ];
 
     brews = [
-      # Go tooling
-      "golangci-lint"
       # Better in Homebrew on macOS
-      # macOS ships curl built against LibreSSL with fewer features; use brew's.
-      "curl"
       "dotnet"
       "mono"
       "llvm"
       "llvm@18"
       "llvm@20"
       "openjdk"
-      "postgrest"
       "herdr"
-      # PDF text extraction and page rendering (pdftotext, pdftoppm).
-      "poppler"
-      "glow"
-      "git-delta"
-      "bat"
     ];
 
     casks = [

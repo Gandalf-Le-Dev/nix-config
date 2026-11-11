@@ -41,14 +41,13 @@
         insteadOf = "https://github.com/";
       };
     }
-    # delta comes from Homebrew, so the VPS has no binary for this pager.
-    (lib.mkIf pkgs.stdenv.isDarwin {
+    {
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only";
       delta = {
         navigate = true;
         dark = true;
       };
-    }) ];
+    } ];
   };
 }
