@@ -45,6 +45,12 @@ A clear spec does not mean sonnet: a migration or perf optimization with a clear
 
 Escalate in this order when a result is not good enough: give the agent a check it can run (test, build, script), then raise effort one level, then move up one model at a lower effort. Before raising opus past `high`, try fable at `high` instead. For batches with an automatic pass/fail check, run all at `low` and re-run only the failures at `high`.
 
+### Context hygiene
+
+A subagent is one job: one brief, one result, then done. For the next task, start a fresh agent with a new brief instead of resuming a finished one. Resume an agent only to follow up on its own result.
+
+The lead suggests a fresh session at natural breaks: a plan phase or milestone is done, or the topic changes. It never cuts a session mid-task. Before the switch, it writes the state into the repo's plan docs (or a short handoff note) so the next session starts from files, not memory.
+
 ### Lead and deep sessions
 
 The session the user talks to is the lead: opus at medium. It holds the discussion, decides, and integrates. It does not grind through hard thinking itself.
